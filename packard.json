@@ -1,0 +1,12 @@
+{
+  "name": "dramapix-starter",
+  "version": "1.0.0",
+  "description": "Starter do DramaPix para Render + Supabase",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}
