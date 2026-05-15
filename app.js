@@ -1,19 +1,44 @@
-let supabase;async function initSupabase() {
-  const res = await fetch('/api/config');
-  const config = await res.json();  if (!config.supabaseUrl || !config.supabaseAnonKey) {
-    document.getElementById('authStatus').textContent = 'Configure o Supabase no Render para ativar login.';
+const SUPABASE_URL = 'https://fqbofwpgbdqlpllxfsfy.supabase.co';
+const SUPABASE_ANON_KEY = 'sb_publishable_Y-GRBXUOylnUJKJGuaBNFg_emwtwKi1';
+
+const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+async function signUp() {
+  const email = document.getElementById('email').value;
+  const password = document.getElementById('password').value;
+  const status = document.getElementById('authStatus');
+
+  if (!email || !password) {
+    status.textContent = 'Preencha e-mail e senha.';
     return;
-  }  supabase = window.supabase.createClient(config.supabaseUrl, config.supabaseAnonKey);
-}async function signUp() {
-  if (!supabase) return;
+  }
+
+  const { error } = await supabase.auth.signUp({
+    email,
+    password
+  });
+
+  status.textContent = error
+    ? 'Erro no cadastro: ' + error.message
+    : 'Cadastro enviado. Verifique seu e-mail.';
+}
+
+async function signIn() {
   const email = document.getElementById('email').value;
   const password = document.getElementById('password').value;
-  const { error } = await supabase.auth.signUp({ email, password });
-  document.getElementById('authStatus').textContent = error ? error.message : 'Cadastro enviado. Verifique seu e-mail.';
-}async function signIn() {
-  if (!supabase) return;
-  const email = document.getElementById('email').value;
-  const password = document.getElementById('password').value;
-  const { error } = await supabase.auth.signInWithPassword({ email, password });
-  document.getElementById('authStatus').textContent = error ? error.message : 'Login realizado com sucesso.';
-}initSupabase();
+  const status = document.getElementById('authStatus');
+
+  if (!email || !password) {
+    status.textContent = 'Preencha e-mail e senha.';
+    return;
+  }
+
+  const { error } = await supabase.auth.signInWithPassword({
+    email,
+    password
+  });
+
+  status.textContent = error
+    ? 'Erro no login: ' + error.message
+    : 'Login realizado com sucesso.';
+}
