@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DramaPix - Área VIP</title>
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Estilo com tema premium -->
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; padding: 1rem; background: #f9f9f9; }
+        .container-vip { max-width: 900px; margin: 0 auto; background: white; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        header { background: #FFC107; color: #333; padding: 1.5rem; display: flex; justify-content: space-between; align-items: center; }
+        .voltar-link { color: #333; text-decoration: none; display: flex; align-items: center; gap: 0.5rem; }
+        .voltar-link:hover { text-decoration: underline; }
+        .status-vip { background: #333; color: #FFC107; padding: 0.8rem 1.2rem; border-radius: 4px; font-weight: bold; }
+        
+        /* Seção de Apresentação */
+        .secao-apresentacao { padding: 2rem; background: #FFFDE7; text-align: center; border-bottom: 1px solid #FFE082; }
+        .secao-apresentacao h2 { color: #FF6F00; margin-top: 0; font-size: 1.8rem; }
+        .secao-apresentacao p { color: #555; max-width: 600px; margin: 1rem auto; }
+        .btn-assinar { background: #FF6F00; color: white; border: none; padding: 1.2rem 2rem; border-radius: 4px; font-size: 1.1rem; cursor: pointer; font-weight: bold; }
+        .btn-assinar:hover { background: #E65100; }
+        .btn-assinar.ativo { background: #4CAF50; cursor: not-allowed; }
+        
+        /* Seção de Planos */
+        .secao-planos { padding: 2rem; border-bottom: 1px solid #eee; }
+        .secao-planos h2 { color: #333; margin-top: 0; text-align: center; }
+        .container-planos { display: flex; gap: 2rem; justify-content: center; flex-wrap: wrap; margin-top: 2rem; }
+        .card-plano { width: 250px; background: #f5f5f5; border-radius: 8px; padding: 1.5rem; text-align: center; position: relative; border: 2px solid #eee; }
+        .card-plano.destaque { border: 2px solid #FFC107; background: #FFFDE7; }
+        .plano-rotulo { background: #FFC107; color: #333; padding: 0.5rem; border-radius: 4px; font-size: 0.9rem; font-weight: bold; position: absolute; top: -10px; right: 20px; }
+        .card-plano h3 { color: #333; margin: 0 0 1rem 0; font-size: 1.3rem; }
+        .preco-plano { font-size: 2rem; font-weight: bold; color: #FF6F00; margin: 1rem 0; }
+        .preco-plano span { font-size: 0.9rem; color: #666; font-weight: normal; }
+        .beneficios-plano { list-style: none; padding: 0; margin: 1.5rem 0; text-align: left; }
+        .beneficios-plano li { margin: 0.8rem 0; display: flex; align-items: center; gap: 0.5rem; color: #555; }
+        .beneficios-plano li::before { content: "✅"; }
+        .btn-selecionar { background: #6A0DAD; color: white; border: none; padding: 0.8rem; border-radius: 4px; width: 100%; cursor: pointer; }
+        .btn-selecionar:hover { background: #570B8C; }
+        .btn-selecionar.destaque { background: #FF6F00; }
+        .btn-selecionar.destaque:hover { background: #E65100; }
+        
+        /* Seção de Benefícios */
+        .secao-beneficios { padding: 2rem; }
+        .secao-beneficios h2 { color: #333; margin-top: 0; text-align: center; }
+        .container-beneficios { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 1.5rem; margin-top: 2rem; }
+        .card-beneficio { background: #f5f5f5; border-radius: 8px; padding: 1.5rem; text-align: center; }
+        .icone-beneficio { font-size: 2rem; margin-bottom: 1rem; color: #FF6F00; }
+        .card-beneficio h4 { margin: 0 0 0.5rem 0; color: #333; }
+        .card-beneficio p { margin: 0; color: #666; font-size: 0.9rem; }
+        
+        footer { padding: 1.5rem; text-align: center; color: #666; font-size: 0.9rem; }
+        .mensagem { padding: 1rem; border-radius: 4px; text-align: center; background: #d4edda; color: #155724; display: none; margin: 1rem; }
+    </style>
+</head>
+<body>
+    <div class="container-vip">
+        <!-- Cabeçalho -->
+        <header>
+            <a href="index.html" class="voltar-link">
+                ← Voltar ao Menu
+            </a>
+            <div class="status-vip" id="statusVip">Plano Gratuito</div>
+        </header>
+
+        <!-- Mensagem de confirmação -->
+        <div id="mensagem" class="mensagem">Parabéns! Você agora é VIP do DramaPix!</div>
+
+        <!-- Seção de Apresentação -->
+        <section class="secao-apresentacao">
+            <h2>✨ Seja VIP do DramaPix</h2>
+            <p>Desbloqueie benefícios exclusivos, ganhe mais pontos e assista dramas sem interrupções!</p>
+            <button class="btn-assinar" id="btnAssinar">Assinar Plano VIP</button>
+        </section>
+
+        <!-- Seção de Planos -->
+        <section class="secao-planos">
+            <h2>📊 Escolha Seu Plano</h2>
+            <div class="container-planos">
+                <!-- Plano Mensal -->
+                <div class="card-plano">
+                    <h3>Plano Mensal</h3>
+                    <div class="preco-plano">R$ 19,90 <span>/mês</span></div>
+                    <ul class="beneficios-plano">
+                        <li>Sem anúncios durante os dramas</li>
+                        <li>+20% de pontos em todas as tarefas</li>
+                        <li>Acesso a dramas exclusivos</li>
+                        <li>1 Baú de Ouro por mês</li>
+                    </ul>
+                    <button class="btn-selecionar" onclick="selecionarPlano('mensal')">Selecionar</button>
+                </div>
+
+                <!-- Plano Trimestral (Destaque) -->
+                <div class="card-plano destaque">
+                    <div class="plano-rotulo">MAIS POPULAR</div>
+                    <h3>Plano Trimestral</h3>
+                    <div class="preco-plano">R$ 49,90 <span>/3 meses</span></div>
+                    <ul class="beneficios-plano">
+                        <li>Todos os benefícios do Plano Mensal</li>
+                        <li>+30% de pontos em todas as tarefas</li>
+                        <li>2 Baús de Ouro por mês</li>
+                        <li>Acesso antecipado a novos dramas</li>
+                        <li>Desconto de 10% em saques</li>
+                    </ul>
+                    <button class="btn-selecionar destaque" onclick="selecionarPlano('trimestral')">Selecionar</button>
+                </div>
+
+                <!-- Plano Anual -->
+                <div class="card-plano">
+                    <h3>Plano Anual</h3>
+                    <div class="preco-plano">R$ 199,90 <span>/ano</span></div>
+                    <ul class="beneficios-plano">
+                        <li>Todos os benefícios do Plano Trimestral</li>
+                        <li>+50% de pontos em todas as tarefas</li>
+                        <li>1 Baú Especial por mês</li>
+                        <li>Dias extras de check-in</li>
+                        <li>Desconto de 20% em saques</li>
+                        <li>Brindes exclusivos</li>
+                    </ul>
+                    <button class="btn-selecionar" onclick="selecionarPlano('anual')">Selecionar</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção de Benefícios -->
+        <section class="secao-beneficios">
+            <h2>🎁 Benefícios Exclusivos VIP</h2>
+            <div class="container-beneficios">
+                <div class="card-beneficio">
+                    <div class="icone-beneficio">📺</div>
+                    <h4>Dramas Exclusivos</h4>
+                    <p>Acesso a conteúdo que não está disponível no plano gratuito</p>
+                </div>
+                <div class="card-beneficio">
+                    <div class="icone-beneficio">💰</div>
+                    <h4>Pontos Aumentados</h4>
+                    <p>Ganha mais pontos em todas as tarefas, check-ins e convites</p>
+                </div>
+                <div class="card-beneficio">
+                    <div class="icone-beneficio">📦</div>
+                    <h4>Baús Especiais</h4>
+                    <p>Receba baús com recompensas maiores e mais frequentes</p>
+                </div>
+                <div class="card-beneficio">
+                    <div class="icone-beneficio">⚡</div>
+                    <h4>Sem Anúncios</h4>
+                    <p>Assista seus dramas sem interrupções</p>
+                </div>
+                <div class="card-beneficio">
+                    <div class="icone-beneficio">⏱️</div>
+                    <h4>Acesso Antecipado</h4>
+                    <p>Veja novos dramas antes de qualquer um</p>
+                </div>
+                <div class="card-beneficio">
+                    <div class="icone-beneficio">🤝</div>
+                    <h4>Suporte Prioritário</h4>
+                    <p>Atendimento rápido para resolver suas dúvidas</p>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <p>© 2024 DramaPix - Torne sua experiência ainda melhor!</p>
+        </footer>
+    </div>
+
+    <!-- Link para o JS da Área VIP -->
+    <script src="js/area-vip.js"></script>
+</body>
+</html>
