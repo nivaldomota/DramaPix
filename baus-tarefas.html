@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DramaPix - Baús e Tarefas</title>
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Estilo com tema de recompensas -->
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; padding: 1rem; background: #f9f9f9; }
+        .container-baus { max-width: 800px; margin: 0 auto; background: white; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        header { background: #6A0DAD; color: white; padding: 1.5rem; display: flex; justify-content: space-between; align-items: center; }
+        .voltar-link { color: white; text-decoration: none; display: flex; align-items: center; gap: 0.5rem; }
+        .voltar-link:hover { text-decoration: underline; }
+        .pontos-atual { background: white; color: #6A0DAD; padding: 0.8rem 1.2rem; border-radius: 4px; font-weight: bold; }
+        
+        /* Seção de Baús */
+        .secao-baus { padding: 2rem; border-bottom: 1px solid #eee; }
+        .secao-baus h2 { color: #333; margin-top: 0; display: flex; align-items: center; gap: 0.5rem; }
+        .container-baus { display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap; margin-top: 1.5rem; }
+        .card-bau { width: 180px; background: #f5f5f5; border-radius: 8px; padding: 1.5rem; text-align: center; position: relative; transition: transform 0.2s; cursor: pointer; }
+        .card-bau:hover { transform: translateY(-5px); }
+        .bau-icone { font-size: 3rem; margin-bottom: 1rem; }
+        .bau-comum { color: #9E9E9E; }
+        .bau-prata { color: #BDBDBD; }
+        .bau-ouro { color: #FFC107; }
+        .bau-fechado::after { content: "🔒"; position: absolute; top: 10px; right: 10px; font-size: 1.2rem; }
+        .bau-aberto::after { content: "✨"; position: absolute; top: 10px; right: 10px; font-size: 1.2rem; }
+        .card-bau h3 { margin: 0 0 0.5rem 0; color: #333; }
+        .card-bau p { margin: 0; color: #666; font-size: 0.9rem; }
+        .btn-abrir { background: #6A0DAD; color: white; border: none; padding: 0.8rem; border-radius: 4px; width: 100%; margin-top: 1rem; cursor: pointer; }
+        .btn-abrir:disabled { background: #ccc; cursor: not-allowed; }
+        .btn-abrir:hover:not(:disabled) { background: #570B8C; }
+        
+        /* Seção de Tarefas */
+        .secao-tarefas { padding: 2rem; }
+        .secao-tarefas h2 { color: #333; margin-top: 0; display: flex; align-items: center; gap: 0.5rem; }
+        .tabs-tarefas { display: flex; gap: 0.5rem; margin-bottom: 1.5rem; flex-wrap: wrap; }
+        .tab-tarefa { padding: 0.8rem 1.2rem; border: none; border-radius: 4px; cursor: pointer; background: #f5f5f5; color: #333; }
+        .tab-tarefa.ativo { background: #6A0DAD; color: white; }
+        .lista-tarefas { display: flex; flex-direction: column; gap: 1rem; }
+        .item-tarefa { display: flex; justify-content: space-between; align-items: center; padding: 1.5rem; background: #f5f5f5; border-radius: 8px; }
+        .info-tarefa h4 { margin: 0 0 0.3rem 0; color: #333; }
+        .info-tarefa p { margin: 0; color: #666; font-size: 0.9rem; }
+        .recompensa-tarefa { color: #2E7D32; font-weight: bold; }
+        .btn-concluir { background: #2E7D32; color: white; border: none; padding: 0.8rem 1.2rem; border-radius: 4px; cursor: pointer; }
+        .btn-concluir:hover { background: #1B5E20; }
+        .btn-concluir.concluido { background: #ccc; cursor: not-allowed; }
+        .mensagem { padding: 1rem; border-radius: 4px; text-align: center; background: #d4edda; color: #155724; display: none; margin: 1rem; }
+    </style>
+</head>
+<body>
+    <div class="container-baus">
+        <!-- Cabeçalho -->
+        <header>
+            <a href="index.html" class="voltar-link">
+                ← Voltar ao Menu
+            </a>
+            <div class="pontos-atual" id="pontosAtual">0 pontos</div>
+        </header>
+
+        <!-- Mensagem de recompensa -->
+        <div id="mensagem" class="mensagem">Parabéns! Você ganhou 150 pontos!</div>
+
+        <!-- Seção de Baús -->
+        <section class="secao-baus">
+            <h2>📦 Baús Recompensadores</h2>
+            <p>Abra baús com recompensas exclusivas completando tarefas!</p>
+            
+            <div class="container-baus">
+                <!-- Bau Comum -->
+                <div class="card-bau bau-aberto">
+                    <div class="bau-icone bau-comum">📦</div>
+                    <h3>Baú Comum</h3>
+                    <p>Recompensa: 50-100 pontos</p>
+                    <p>Progresso: 3/3 tarefas</p>
+                    <button class="btn-abrir" id="btnAbrirComum">Abrir Agora</button>
+                </div>
+
+                <!-- Bau Prata -->
+                <div class="card-bau bau-fechado">
+                    <div class="bau-icone bau-prata">📦</div>
+                    <h3>Baú de Prata</h3>
+                    <p>Recompensa: 150-250 pontos</p>
+                    <p>Progresso: 1/5 tarefas</p>
+                    <button class="btn-abrir" disabled>Completar Tarefas</button>
+                </div>
+
+                <!-- Bau Ouro -->
+                <div class="card-bau bau-fechado">
+                    <div class="bau-icone bau-ouro">📦</div>
+                    <h3>Baú de Ouro</h3>
+                    <p>Recompensa: 500-1000 pontos</p>
+                    <p>Progresso: 0/10 tarefas</p>
+                    <button class="btn-abrir" disabled>Completar Tarefas</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção de Tarefas -->
+        <section class="secao-tarefas">
+            <h2>📋 Tarefas do Dia</h2>
+            <div class="tabs-tarefas">
+                <button class="tab-tarefa ativo" onclick="mostrarTarefas('diarias')">Diárias</button>
+                <button class="tab-tarefa" onclick="mostrarTarefas('semanais')">Semanais</button>
+                <button class="tab-tarefa" onclick="mostrarTarefas('especiais')">Especiais</button>
+            </div>
+
+            <div class="lista-tarefas" id="listaTarefas">
+                <!-- Tarefas carregadas via JS -->
+            </div>
+        </section>
+    </div>
+
+    <!-- Link para o JS de baús e tarefas -->
+    <script src="js/baus-tarefas.js"></script>
+</body>
+</html>
