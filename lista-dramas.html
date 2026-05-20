@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DramaPix - Lista de Dramas</title>
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Estilo adaptado para cards e responsividade -->
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; padding: 1rem; background: #f9f9f9; }
+        header { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; }
+        h1 { color: #6A0DAD; margin: 0; }
+        .perfil-link { color: #6A0DAD; text-decoration: none; display: flex; align-items: center; gap: 0.5rem; }
+        .perfil-link:hover { text-decoration: underline; }
+        .filtros { max-width: 1200px; margin: 0 auto 2rem auto; display: flex; gap: 1rem; flex-wrap: wrap; }
+        .btn-filtro { padding: 0.8rem 1.2rem; border: none; border-radius: 4px; cursor: pointer; background: #f5f5f5; color: #333; }
+        .btn-filtro:hover, .btn-filtro.ativo { background: #6A0DAD; color: white; }
+        .container-dramas { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 1.5rem; }
+        .card-drama { background: white; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 4px rgba(0,0,0,0.1); cursor: pointer; transition: transform 0.2s; }
+        .card-drama:hover { transform: translateY(-5px); }
+        .card-drama img { width: 100%; height: 350px; object-fit: cover; }
+        .info-drama { padding: 1rem; }
+        .info-drama h3 { margin: 0 0 0.5rem 0; color: #333; font-size: 1.1rem; }
+        .genero { color: #6A0DAD; font-size: 0.9rem; margin-bottom: 0.5rem; }
+        .episodios { color: #666; font-size: 0.8rem; }
+        .mensagem { max-width: 1200px; margin: 1rem auto; padding: 1rem; border-radius: 4px; text-align: center; display: none; }
+        .sucesso { background: #d4edda; color: #155724; }
+        footer { max-width: 1200px; margin: 2rem auto; text-align: center; color: #666; font-size: 0.9rem; }
+    </style>
+</head>
+<body>
+    <!-- Cabeçalho -->
+    <header>
+        <h1>📺 Dramas Disponíveis</h1>
+        <a href="perfil-usuario.html" class="perfil-link">
+            <span>Meu Perfil</span>
+            <span id="pontosUsuario">0 pontos</span>
+        </a>
+    </header>
+
+    <!-- Área de mensagem -->
+    <div id="mensagem" class="mensagem sucesso"></div>
+
+    <!-- Filtros de gênero -->
+    <div class="filtros">
+        <button class="btn-filtro ativo" onclick="filtrarDramas('todos')">Todos os Gêneros</button>
+        <button class="btn-filtro" onclick="filtrarDramas('romance')">Romance</button>
+        <button class="btn-filtro" onclick="filtrarDramas('suspense')">Suspense</button>
+        <button class="btn-filtro" onclick="filtrarDramas('acao')">Ação</button>
+        <button class="btn-filtro" onclick="filtrarDramas('comedia')">Comédia</button>
+    </div>
+
+    <!-- Lista de dramas -->
+    <div class="container-dramas" id="listaDramas">
+        <!-- Cards de dramas carregados via JS -->
+    </div>
+
+    <footer>
+        <p>© 2024 DramaPix - Assista e ganhe pontos!</p>
+    </footer>
+
+    <!-- Link para o JS da lista de dramas -->
+    <script src="js/lista-dramas.js"></script>
+</body>
+</html>
