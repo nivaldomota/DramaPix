@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DramaPix - Meu Perfil</title>
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Estilo harmonizado com o resto do app -->
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; padding: 1rem; background: #f9f9f9; }
+        .container-perfil { max-width: 800px; margin: 0 auto; background: white; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        header { background: #6A0DAD; color: white; padding: 1.5rem; display: flex; justify-content: space-between; align-items: center; }
+        .voltar-link { color: white; text-decoration: none; display: flex; align-items: center; gap: 0.5rem; }
+        .voltar-link:hover { text-decoration: underline; }
+        .btn-sair { background: white; color: #6A0DAD; border: none; padding: 0.8rem 1.2rem; border-radius: 4px; cursor: pointer; font-weight: bold; }
+        .btn-sair:hover { background: #f5f5f5; }
+        .dados-usuario { padding: 2rem; display: flex; align-items: center; gap: 2rem; border-bottom: 1px solid #eee; }
+        .avatar-usuario { width: 100px; height: 100px; border-radius: 50%; background: #F3E5F5; color: #6A0DAD; font-size: 2rem; display: flex; align-items: center; justify-content: center; }
+        .info-usuario h2 { margin: 0 0 0.5rem 0; color: #333; }
+        .info-usuario p { margin: 0.3rem 0; color: #666; }
+        .info-usuario .email { color: #6A0DAD; }
+        .secao-pontos { padding: 2rem; border-bottom: 1px solid #eee; }
+        .secao-pontos h3 { margin-top: 0; color: #333; display: flex; align-items: center; gap: 0.5rem; }
+        .cartao-pontos { background: #f5f5f5; padding: 1.5rem; border-radius: 8px; display: flex; justify-content: space-between; align-items: center; margin-top: 1rem; }
+        .pontos-totais { font-size: 2rem; font-weight: bold; color: #6A0DAD; }
+        .btn-sacar { background: #2E7D32; color: white; border: none; padding: 1rem 1.5rem; border-radius: 4px; cursor: pointer; font-size: 1rem; }
+        .btn-sacar:hover { background: #1B5E20; }
+        .secao-historico { padding: 2rem; }
+        .secao-historico h3 { margin-top: 0; color: #333; display: flex; align-items: center; gap: 0.5rem; }
+        .tabela-historico { width: 100%; border-collapse: collapse; margin-top: 1rem; }
+        .tabela-historico th, .tabela-historico td { padding: 1rem; text-align: left; border-bottom: 1px solid #eee; }
+        .tabela-historico th { background: #f5f5f5; color: #333; }
+        .tipo-ganho { color: #2E7D32; font-weight: bold; }
+        .tipo-saque { color: #C62828; font-weight: bold; }
+        .sem-dados { text-align: center; color: #666; padding: 2rem; }
+        footer { padding: 1.5rem; text-align: center; color: #666; font-size: 0.9rem; }
+    </style>
+</head>
+<body>
+    <div class="container-perfil">
+        <!-- Cabeçalho -->
+        <header>
+            <a href="index.html" class="voltar-link">
+                ← Voltar ao Menu
+            </a>
+            <button class="btn-sair" id="btnSair">Sair da Conta</button>
+        </header>
+
+        <!-- Dados básicos do usuário -->
+        <section class="dados-usuario">
+            <div class="avatar-usuario" id="avatarUsuario">U</div>
+            <div class="info-usuario">
+                <h2 id="nomeUsuario">Nome do Usuário</h2>
+                <p class="email" id="emailUsuario">usuario@email.com</p>
+                <p>Membro desde: <span id="dataCadastro">01/01/2024</span></p>
+                <p>Código de convite: <span id="codigoConvite" style="font-weight: bold; color: #6A0DAD;">DRAMA123</span></p>
+            </div>
+        </section>
+
+        <!-- Seção de pontos -->
+        <section class="secao-pontos">
+            <h3>💎 Meus Pontos</h3>
+            <div class="cartao-pontos">
+                <div>
+                    <p>Pontos disponíveis para saque:</p>
+                    <span class="pontos-totais" id="pontosTotais">0 pontos</span>
+                </div>
+                <button class="btn-sacar" id="btnSacar">Solicitar Saque</button>
+            </div>
+        </section>
+
+        <!-- Seção de histórico -->
+        <section class="secao-historico">
+            <h3>📜 Histórico de Transações</h3>
+            <table class="tabela-historico" id="tabelaHistorico">
+                <thead>
+                    <tr>
+                        <<th>Data</</th>
+                        <<th>Tipo</</th>
+                        <<th>Valor</</th>
+                        <<th>Descrição</</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Linhas carregadas via JS -->
+                </tbody>
+            </table>
+            <div class="sem-dados" id="semDados" style="display: none;">
+                Nenhuma transação registrada ainda!
+            </div>
+        </section>
+
+        <footer>
+            <p>© 2024 DramaPix - Gerencie sua conta com segurança</p>
+        </footer>
+    </div>
+
+    <!-- Link para o JS do perfil -->
+    <script src="js/perfil-usuario.js"></script>
+</body>
+</html>
