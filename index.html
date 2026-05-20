@@ -1,36 +1,23 @@
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script src="app.js"></script>
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>DramaPix</title>
-  <link rel="stylesheet" href="styles.css" />
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-</head>
-<body>
-  <div class="app">
-    <header class="hero">
-      <h1>DramaPix</h1>
-      <p>Dramas, bônus, convites e recompensas em um só lugar.</p>
-    </header>    <section class="card auth-card">
-      <h2>Acesso</h2>
-      <input id="email" type="email" placeholder="Seu e-mail" />
-      <input id="password" type="password" placeholder="Sua senha" />
-      <div class="actions">
-        <button onclick="signUp()">Cadastrar</button>
-        <button class="secondary" onclick="signIn()">Entrar</button>
-      </div>
-      <p id="authStatus" class="status"></p>
-    </section>    <section class="grid">
-      <div class="card"><h3>Convites</h3><p>Compartilhe seu link e acompanhe ganhos.</p></div>
-      <div class="card"><h3>Pontos</h3><p>Veja saldo, bônus e progresso.</p></div>
-      <div class="card"><h3>Saque</h3><p>Botão acende ao atingir a meta.</p></div>
-      <div class="card"><h3>VIP</h3><p>Benefícios especiais e área premium.</p></div>
-      <div class="card"><h3>Parceiros</h3><p>Pagamentos e empresas de anúncios.</p></div>
-      <div class="card"><h3>Suporte</h3><p>Ajuda e política do app.</p></div>
-    </section>
-  </div>  <script src="app.js"></script>
-</body>
+html lang="pt-BR">
+ <head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>DramaPix - Menu Principal</title>
+     <link rel="stylesheet" href="css/style.css">
+ </head>
+ <body>
+     <header>
+         <h1>DramaPix</h1>
+     </header>
+     <nav class="menu-principal">
+         <button onclick="window.location.href='login.html'">Login / Cadastro</button>
+         <button onclick="window.location.href='lista-dramas.html'">Ver Dramas</button>
+         <button onclick="window.location.href='bonus-inicial.html'">Bônus de Boas-Vindas</button>
+         <button onclick="window.location.href='perfil-usuario.html'">Meu Perfil</button>
+         <button onclick="window.location.href='convite-amigos.html'">Convidar Amigos</button>
+         <button onclick="window.location.href='baus-tarefas.html'">Baús e Tarefas</button>
+         <button onclick="window.location.href='area-vip.html'">Área VIP</button>
+     </nav>
+     <script src="js/main.js"></script>
+ </body>
 </html>
