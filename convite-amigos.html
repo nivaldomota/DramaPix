@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DramaPix - Convidar Amigos</title>
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Estilo com foco em compartilhamento -->
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; padding: 1rem; background: #f9f9f9; }
+        .container-convite { max-width: 700px; margin: 0 auto; background: white; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        header { background: #6A0DAD; color: white; padding: 1.5rem; display: flex; justify-content: space-between; align-items: center; }
+        .voltar-link { color: white; text-decoration: none; display: flex; align-items: center; gap: 0.5rem; }
+        .voltar-link:hover { text-decoration: underline; }
+        .secao-bonus { padding: 2rem; border-bottom: 1px solid #eee; text-align: center; }
+        .secao-bonus h2 { color: #333; margin-top: 0; }
+        .cartao-bonus { background: #F3E5F5; padding: 2rem; border-radius: 8px; margin: 1.5rem 0; }
+        .cartao-bonus h3 { color: #6A0DAD; margin: 0 0 1rem 0; font-size: 1.2rem; }
+        .cartao-bonus p { margin: 0.5rem 0; color: #555; }
+        .codigo-convite { font-size: 1.5rem; font-weight: bold; color: #6A0DAD; background: white; padding: 1rem; border-radius: 4px; display: inline-block; margin: 1rem 0; }
+        .btn-copiar { background: #6A0DAD; color: white; border: none; padding: 0.8rem 1.2rem; border-radius: 4px; cursor: pointer; margin-bottom: 1rem; }
+        .btn-copiar:hover { background: #570B8C; }
+        .secao-compartilhar { padding: 2rem; border-bottom: 1px solid #eee; }
+        .secao-compartilhar h3 { color: #333; margin-top: 0; text-align: center; }
+        .botoes-redes { display: flex; gap: 1rem; justify-content: center; margin-top: 1.5rem; flex-wrap: wrap; }
+        .btn-rede { padding: 1rem; border: none; border-radius: 4px; cursor: pointer; display: flex; align-items: center; gap: 0.5rem; font-size: 1rem; color: white; }
+        .btn-whatsapp { background: #25D366; }
+        .btn-whatsapp:hover { background: #128C7E; }
+        .btn-instagram { background: #E4405F; }
+        .btn-instagram:hover { background: #C13584; }
+        .btn-facebook { background: #1877F2; }
+        .btn-facebook:hover { background: #166FE5; }
+        .btn-twitter { background: #1DA1F2; }
+        .btn-twitter:hover { background: #1A91DA; }
+        .secao-amigos { padding: 2rem; }
+        .secao-amigos h3 { color: #333; margin-top: 0; text-align: center; }
+        .lista-amigos { margin-top: 1.5rem; }
+        .amigo-item { display: flex; justify-content: space-between; align-items: center; padding: 1rem; background: #f5f5f5; border-radius: 4px; margin-bottom: 1rem; }
+        .amigo-status { padding: 0.5rem 1rem; border-radius: 4px; font-size: 0.9rem; }
+        .status-ativo { background: #d4edda; color: #155724; }
+        .status-pendente { background: #fff3cd; color: #856404; }
+        .sem-amigos { text-align: center; color: #666; padding: 2rem; }
+        footer { padding: 1.5rem; text-align: center; color: #666; font-size: 0.9rem; }
+        .mensagem { padding: 1rem; border-radius: 4px; text-align: center; background: #d4edda; color: #155724; display: none; margin: 1rem; }
+    </style>
+</head>
+<body>
+    <div class="container-convite">
+        <!-- Cabeçalho -->
+        <header>
+            <a href="index.html" class="voltar-link">
+                ← Voltar ao Menu
+            </a>
+            <span>🎁 Ganhe Pontos Extra!</span>
+        </header>
+
+        <!-- Mensagem de confirmação -->
+        <div id="mensagem" class="mensagem">Código copiado com sucesso!</div>
+
+        <!-- Seção de bônus por convite -->
+        <section class="secao-bonus">
+            <h2>Convide seus Amigos para o DramaPix!</h2>
+            <p>Ganhe pontos para cada amigo que se cadastrar usando seu código!</p>
+            
+            <div class="cartao-bonus">
+                <h3>Recompensas por Convite:</h3>
+                <p>✅ <strong>200 pontos</strong> quando seu amigo se cadastrar</p>
+                <p>✅ <strong>+300 pontos</strong> quando seu amigo fizer o primeiro saque</p>
+                <p>✅ <strong>Bônus especial</strong> para você e seu amigo em dias de evento!</p>
+
+                <div class="codigo-convite" id="codigoConvite">DRAMA-XXX-000</div>
+                <button class="btn-copiar" id="btnCopiar">📋 Copiar Código</button>
+                <p>Compartilhe esse código ou envie o link direto!</p>
+            </div>
+        </section>
+
+        <!-- Seção de compartilhamento -->
+        <section class="secao-compartilhar">
+            <h3>📱 Compartilhe em suas Redes Sociais</h3>
+            <div class="botoes-redes">
+                <button class="btn-rede btn-whatsapp" id="btnWhatsapp">
+                    📱 WhatsApp
+                </button>
+                <button class="btn-rede btn-instagram">
+                    📸 Instagram
+                </button>
+                <button class="btn-rede btn-facebook">
+                    👍 Facebook
+                </button>
+                <button class="btn-rede btn-twitter">
+                    🐦 Twitter
+                </button>
+            </div>
+        </section>
+
+        <!-- Seção de amigos convidados -->
+        <section class="secao-amigos">
+            <h3>🤝 Seus Amigos Convidados</h3>
+            <div class="lista-amigos" id="listaAmigos">
+                <!-- Itens carregados via JS -->
+            </div>
+            <div class="sem-amigos" id="semAmigos">
+                Você ainda não convidou ninguém. Comece agora e ganhe pontos extras!
+            </div>
+        </section>
+
+        <footer>
+            <p>© 2024 DramaPix - Quanto mais amigos, mais pontos!</p>
+        </footer>
+    </div>
+
+    <!-- Link para o JS de convite -->
+    <script src="js/convite-amigos.js"></script>
+</body>
+</html>
