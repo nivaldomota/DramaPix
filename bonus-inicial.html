@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DramaPix - Bônus de Boas-Vindas</title>
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Estilo compatível com os outros arquivos -->
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 500px; margin: 2rem auto; padding: 0 1rem; }
+        .container-bonus { background: #f5f5f5; padding: 2rem; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        h1 { color: #6A0DAD; text-align: center; margin-bottom: 1rem; }
+        .subtitulo { text-align: center; color: #555; margin-bottom: 2rem; }
+        .card-bonus { background: white; padding: 1.5rem; border-radius: 8px; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 1rem; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+        .icone-bonus { font-size: 2rem; padding: 1rem; border-radius: 50%; background: #F3E5F5; color: #6A0DAD; width: 60px; height: 60px; display: flex; align-items: center; justify-content: center; }
+        .texto-bonus h3 { margin: 0; color: #333; }
+        .texto-bonus p { margin: 0.5rem 0 0 0; color: #666; font-size: 0.9rem; }
+        .status-bonus { font-weight: bold; color: #2E7D32; }
+        .btn-acoes { display: flex; gap: 1rem; margin-top: 2rem; }
+        button { flex: 1; padding: 1rem; border: none; border-radius: 4px; font-size: 1rem; cursor: pointer; }
+        .btn-ver-dramas { background: #6A0DAD; color: white; }
+        .btn-ver-dramas:hover { background: #570B8C; }
+        .btn-ver-tarefas { background: white; color: #6A0DAD; border: 1px solid #6A0DAD; }
+        .btn-ver-tarefas:hover { background: #F3E5F5; }
+        .mensagem { margin-top: 1rem; padding: 1rem; border-radius: 4px; text-align: center; display: none; }
+        .sucesso { background: #d4edda; color: #155724; }
+    </style>
+</head>
+<body>
+    <div class="container-bonus">
+        <h1>🎉 Bônus de Boas-Vindas!</h1>
+        <p class="subtitulo">Olá <span id="nomeUsuario"></span>, prepare-se para ganhar muito assistindo seus dramas favoritos!</p>
+
+        <!-- Área de mensagem -->
+        <div id="mensagem" class="mensagem sucesso"></div>
+
+        <!-- Cards com os bônus -->
+        <div class="card-bonus">
+            <div class="icone-bonus">⭐</div>
+            <div class="texto-bonus">
+                <h3>Bônus de Cadastro</h3>
+                <p>Pontos ganhos: <span class="status-bonus" id="bonusCadastro">0 pontos</span></p>
+                <p>Recompensa automática para novos usuários!</p>
+            </div>
+        </div>
+
+        <div class="card-bonus">
+            <div class="icone-bonus">🤝</div>
+            <div class="texto-bonus">
+                <h3>Bônus de Primeiro Convite</h3>
+                <p>Pontos ao convidar um amigo: <span class="status-bonus">200 pontos</span></p>
+                <p>Ganhe mais quando seu amigo fizer o primeiro saque!</p>
+            </div>
+        </div>
+
+        <div class="card-bonus">
+            <div class="icone-bonus">📺</div>
+            <div class="texto-bonus">
+                <h3>Bônus de Primeiro Drama Assistido</h3>
+                <p>Pontos ao assistir 10 minutos: <span class="status-bonus">50 pontos</span></p>
+                <p>Comece já a assistir e ganhe!</p>
+            </div>
+        </div>
+
+        <div class="card-bonus">
+            <div class="icone-bonus">🗓️</div>
+            <div class="texto-bonus">
+                <h3>Bônus de Check-in Diário</h3>
+                <p>Pontos por 7 dias consecutivos: <span class="status-bonus">100 pontos</span></p>
+                <p>Não esqueça de fazer check-in todos os dias!</p>
+            </div>
+        </div>
+
+        <!-- Botões de ação -->
+        <div class="btn-acoes">
+            <button class="btn-ver-dramas" onclick="window.location.href='lista-dramas.html'">Ver Dramas Agora</button>
+            <button class="btn-ver-tarefas" onclick="window.location.href='baus-tarefas.html'">Ver Tarefas e Baús</button>
+        </div>
+    </div>
+
+    <!-- Link para o JS dos bônus -->
+    <script src="js/bonus-inicial.js"></script>
+</body>
+</html>
